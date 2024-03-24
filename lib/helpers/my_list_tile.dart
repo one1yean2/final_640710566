@@ -56,13 +56,15 @@ class _MyListTileState extends State<MyListTile> {
                   ),
                 ),
                 SizedBox(width: 12.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.title, style: textTheme.bodyText1),
-                    SizedBox(height: 4.0),
-                    Text(widget.subtitle),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(widget.title, style: textTheme.bodyText1),
+                      SizedBox(height: 4.0),
+                      Text(widget.subtitle),
+                    ],
+                  ),
                 ),
               ],
             ),

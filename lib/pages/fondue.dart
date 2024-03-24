@@ -35,7 +35,7 @@ class FonduePageState extends State<FonduePage> {
   Future<void> _loadWebTypes() async {
     try {
       final data = await ApiCaller().get("web_types");
-      // ข้อมูลที่ได้จาก API นี้จะเป็น JSON array ดังนั้นต้องใช้ List รับค่าจาก jsonDecode()
+
       List list = jsonDecode(data);
       setState(() {
         _webTypeItems = list.map((e) => WebType.fromJson(e)).toList();
@@ -48,13 +48,14 @@ class FonduePageState extends State<FonduePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: const Text('Fondue'),
+        title: const Text('Webby Fondue'),
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(100, 30, 100, 20),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(child: Text('* ต้องกรอกข้อมูล')),
@@ -80,7 +81,7 @@ class FonduePageState extends State<FonduePage> {
                         setState(() {
                           selectedIndex = selected;
                         });
-                        print(selectedIndex);
+                        // print(selectedIndex);
                       },
                       index: index,
                     ),
@@ -114,11 +115,8 @@ class FonduePageState extends State<FonduePage> {
       for (int i = 0; i < 4; i++) {
         text += '\n' + summary[i]['title'] + ' : ' + summary[i]['count'].toString();
       }
-      // String text2 = '\nส่งข้อมูลสำเร็จ\n\n - title: ${summary[0]['title']} : ${summary[0]['count']}';
+
       showOkDialog(context: context, title: "Success", message: text);
-      // final url = _urlTextController.text;
-      // final description = _descriptionTextController.text;
-      // final webTypeId = _webTypeItems[_selectedIndex].id;
     } catch (e) {
       showOkDialog(context: context, title: "Error", message: 'ต้องกรอก URL และเลือกประเภทเว็บ');
     }
