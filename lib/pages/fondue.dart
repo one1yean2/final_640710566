@@ -112,6 +112,7 @@ class FonduePageState extends State<FonduePage> {
       Map map = jsonDecode(data);
       var summary = map['summary'];
       String text = 'ขอบคุณสำหรับการแจ้งข้อมูล รหัสข้อมูลของคุณคือ ' + map['insertItem']['id'].toString();
+      text += '\n\n สถิติการรายงาน\n======';
       for (int i = 0; i < summary.length; i++) {
         text += '\n' + summary[i]['title'] + ' : ' + summary[i]['count'].toString();
       }
